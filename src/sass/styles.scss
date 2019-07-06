@@ -1,4 +1,15 @@
-/*
-   Import partials below
-*/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 @import './normalize';
+@import './fonts.scss';
+@import './header.scss';
+@import './main.scss';
+@import './homePage.scss';
+@import './myFilmLibraryPage.scss';
+@import './detailsPage.scss';
+@import './footer.scss';
