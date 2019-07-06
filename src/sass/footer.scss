@@ -1,0 +1,18 @@
+.footer {
+  height: 86px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #77c1bb;
+
+  &__copyright {
+    margin: 0 auto;
+    font-size: 16px;
+    letter-spacing: 0px;
+    line-height: 16px;
+    color: #372c48;
+    font-family: 'Roboto';
+    font-weight: 400;
+  }
+}
