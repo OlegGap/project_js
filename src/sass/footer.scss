@@ -4,9 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #77c1bb;  
-  position: fixed;
-  left: 0; bottom: 0;
+  background-color: #77c1bb;
   
   &::after {
     content: "";
