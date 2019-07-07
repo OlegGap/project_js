@@ -1,33 +1,44 @@
-// const  inputVaue = 
-=======
+let inputValue = document.querySelector('.card__search_input');
+const form = document.querySelector('#js-form');
+const error = document.querySelector('.error');
+const buttonBar = document.querySelector('.switching-bar_content');
+const buttonBarPrev = document.querySelector('.switching-bar_prev');
 
-fetch(
-  'https://api.themoviedb.org/3/movie/popular?api_key=56d683041d5d1a0178e72b4a2ffc8e86&language=en-US&page=1',
-)
-  .then(res => res.json())
-//   .then(res => )
+form.addEventListener('submit', searchFilms);
 
-// let inputValue;
+function searchFilms(evt) {
+  evt.preventDefault();
+  fetchFilms(inputValue.value, pageNumber).then(results => {
+    if (results !== undefined) {
+      console.log(results);
+    }
+  });
+}
 
-// const section = document.querySelector('.cards__container');
+function fetchFilms(inputValue, pageNumber) {
+  return fetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=56d683041d5d1a0178e72b4a2ffc8e86&language=en-US&page=${pageNumber}&query=${inputValue}`,
+  )
+    .then(res => res.json())
+    .then(result => {
+      if (result.results.length === 0) {
+        error.innerHTML = 'Нічого не знайдено :(';
+      } else {
+        error.innerHTML = '';
+        return result.results;
+      }
+    });
+}
 
-// function createLibraryCards(films, element) {
-//   films
-//     .then(res => res.results)
-//     .then(res => {
-//       element.innerHTML(
-//         res.reduce((acc, el) => (acc += createLibraryCard(el)), '')
-//       );
-//     });
-// }
+buttonBar.addEventListener('click', plaginationNavigation);
 
-// function createLibraryCard ({ vote_average, title, id, backdrop_path }) {
-//     console.log(title);
-//   return `<li class="card__container" data-id="${id}">
-//     <div class="card__mark">${vote_average}</div>
-//     <div class="card__title">${title}</div>
-//     <img class="card__img" src="https://image.tmdb.org/t/p/w500/${backdrop_path}" alt="${title}">
-// </li>`;
-// }
-
-// createLibraryCards(films, section);
+function plaginationNavigation(event) {
+  if (pageNumber === 1) {
+    // buttonBarPrev.target.style.visibility = 'hidden';
+  } else if (event.target.dataset.id === 'prev') {
+    pageNumber -= 1;
+  }
+  if (event.target.dataset.id === 'next') {
+    pageNumber += 1;
+  }
+}

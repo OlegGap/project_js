@@ -1,22 +1,24 @@
-<form class="card_search">
+<form class="card_search" id="js-form">
     <div class="search">
-        <input type="search" placeholder="Write movie and click Enter" name="q">
+        <input class="card__search_input" type="search" placeholder="Write movie
+            and click Enter" name="q">
+        <p class="error"></p>
     </div>
 </form>
-<p class="error"></p>
-<section> 
-  <ul class="cards__container"> 
-      <!-- <li class="card__container">
+
+<section>
+    <ul class="cards__container">
+        <!-- <li class="card__container">
           <div class="card__mark">9.9</div>
           <div class="card__title">Some Title</div>
           <img class="card__img" src="../images/first-layer.jpg" alt="">
       </li> -->
-  </ul>
+    </ul>
 </section>
 <section class="switching-bar">
     <div class="switching-bar_content">
-        <button class="switching-bar_btn switching-bar_prev">Prev</button>
+        <button class="switching-bar_btn switching-bar_prev" data-id="prev">Prev</button>
         <span class="switching-bar_span">1</span>
-        <button class="switching-bar_btn switching-bar_next">Next</button>
+        <button class="switching-bar_btn switching-bar_next" data-id="next">Next</button>
     </div>
 </section>
