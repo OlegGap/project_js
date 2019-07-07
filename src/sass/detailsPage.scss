@@ -1,0 +1,104 @@
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fff;
+}
+
+.container {
+  padding: 0 23px;
+}
+
+
+.img-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  margin-top: 24px;
+}
+
+.dumbo {
+  font-size: 17px;
+  line-height: 20px;
+  color: #372c48;
+  font-family: 'Roboto';
+  font-weight: 500;
+}
+
+tr {
+  font-size: 13px;
+  letter-spacing: 0px;
+  line-height: 26px;
+  color: #000000;
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+.home__content-table {
+  border: 0;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 46px;
+}
+
+.content-table__row {
+  width: 100%;
+}
+
+.content-table__row--color {
+  background-color: #addad6;
+}
+
+.content-table__col {
+  padding-left: 15px;
+}
+
+.content-table__col1 {
+  width: 40%;
+}
+
+.content-table__col2 {
+  width: 60%;
+}
+
+.about {
+  margin-bottom: 36px;
+}
+
+.btn-list{
+  display: flex;
+}
+
+.btn-list-item {
+  width: 150px;
+}
+
+.btn {
+  border: none;
+  background: inherit;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    display: flex;
+  }
+
+  .home__content {
+    margin-left: 20px;
+    margin-top: 24px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 914px;
+  }
+
+  .btn-list{
+    width: 274px;
+  }
+}
+
