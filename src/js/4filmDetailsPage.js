@@ -1,8 +1,3 @@
-// const serializedState = JSON.stringify(value);
-// localStorage.setItem(key, serializedState);
-
-// const serializedState = localStorage.getItem(key);
-
 const detailsTitle = document.querySelector('.details__title');
 const detailsVote = document.querySelector('.content-table__col2__row1');
 const detailsPopularity = document.querySelector('.content-table__col2__row2');
@@ -15,7 +10,6 @@ const btnAddWatched = document.querySelector('.btn-list-item-1');
 const btnAddQueue = document.querySelector('.btn-list-item-2');
 const detailsImg = document.querySelector('.img-wrapper');
 
-renderDetailsPage(424, false)
 function renderDetailsPage(id, isHome) {
   let currentFilm;
   if (isHome) {
@@ -60,7 +54,7 @@ function renderDetailsPage(id, isHome) {
     btnAddQueue.lastChild.innerHTML = 'Remove from queue';
     btnAddQueue.firstChild.setAttribute(
       'src',
-      'images/icon/calendar-minus.png'
+      'images/icon/calendar-minus.png',
     );
   } else {
     btnAddQueue.firstChild.setAttribute('src', 'images/icon/calendar-plus.png');
