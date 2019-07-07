@@ -54,6 +54,7 @@ input[placeholder] {
   height: 160px;
   width: 300px;
   margin-top: 15px;
+  cursor: pointer;
 
   &::after {
     position: absolute;
@@ -130,6 +131,7 @@ input[placeholder] {
 
   &_btn {
     width: 74px;
+    cursor: pointer;
   }
 
   &_span {
