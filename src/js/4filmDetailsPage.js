@@ -35,7 +35,7 @@ function activeDetailsPage(id, isHome) {
     detailsAbout.innerHTML = currentFilm.overview;
   }
   
-  watched = localStorage.getItem('watched');
+  let watched = localStorage.getItem('watched');
 
   if (watched === null) {
       btnAddWatched.firstChild.setAttribute('src', "images/icon/video.png")
@@ -48,7 +48,7 @@ function activeDetailsPage(id, isHome) {
       btnAddWatched.lastChild.innerHTML = 'Add to watched';
   }
 
-  queue = localStorage.getItem('queue');
+  let queue = localStorage.getItem('queue');
 
   if (queue === null) {
       btnAddQueue.firstChild.setAttribute('src', "images/icon/calendar-plus.png")
