@@ -21,7 +21,7 @@ function renderDetailsPage(id, isHome) {
       }
     });
     detailsTitle.innerHTML = currentFilm.title;
-    detailsVote.innerHTML = currentFilm.vote_everage;
+    detailsVote.innerHTML = currentFilm.vote_average;
     detailsPopularity.innerHTML = currentFilm.popularity;
     detailsOriginalTitle.innerHTML = currentFilm.original_title;
     // detailsGenre.innerHTML = 'some genre';
