@@ -1,4 +1,5 @@
-'use strict';
+// const  inputVaue = 
+=======
 
 fetch(
   'https://api.themoviedb.org/3/movie/popular?api_key=56d683041d5d1a0178e72b4a2ffc8e86&language=en-US&page=1',
