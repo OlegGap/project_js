@@ -34,6 +34,7 @@ function fetchFilms(inputValue, pageNumber) {
     .then(result => {
       if (result.results.length === 0) {
         error.innerHTML = 'Нічого не знайдено :(';
+        // list.innerHTML = '';
       } else {
         error.innerHTML = '';
         return result.results;
@@ -47,13 +48,20 @@ function plaginationNavigation(event) {
   if (event.target.dataset.id === 'prev' && pageNumber !== 1) {
     pageNumber -= 1;
     barSpan.innerHTML = pageNumber;
+    if (pageNumber === 1)
+      event.target.classList.remove('switching-bar_btn__active');
+    console.log(event.target);
   }
   if (event.target.dataset.id === 'next') {
     pageNumber += 1;
     barSpan.innerHTML = pageNumber;
+    if (pageNumber === 2) {
+      buttonBar.firstChild.classList.add('switching-bar_btn__active');
+    }
+    console.log(event.target);
   }
 
-  if ((inputValue.value === '')) {
+  if (inputValue.value === '') {
     fetchPopularMoviesList();
   } else {
     searchFilms();
