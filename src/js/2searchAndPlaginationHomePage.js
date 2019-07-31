@@ -34,7 +34,6 @@ function fetchFilms(inputValue, pageNumber) {
     .then(result => {
       if (result.results.length === 0) {
         error.innerHTML = 'Нічого не знайдено :(';
-        // list.innerHTML = '';
       } else {
         error.innerHTML = '';
         return result.results;

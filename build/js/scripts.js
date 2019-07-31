@@ -96,7 +96,7 @@ function fetchFilms(inputValue, pageNumber) {
     return res.json();
   }).then(function (result) {
     if (result.results.length === 0) {
-      error.innerHTML = 'Нічого не знайдено :('; // list.innerHTML = '';
+      error.innerHTML = 'Нічого не знайдено :(';
     } else {
       error.innerHTML = '';
       return result.results;
@@ -178,7 +178,8 @@ var detailsImg = document.querySelector('.img-wrapper');
 function renderDetailsPage(id, isHome) {
   var currentFilm;
 
-  if (isHome) {//lockStor
+  if (isHome) {//якщо переходимо з "бібліотекти" -+ дані беремо з локалСтор (ред.)
+    //lockStor
   } else {
     renderFilms.forEach(function (film) {
       if (film.id === id) {
