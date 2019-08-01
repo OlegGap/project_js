@@ -12,7 +12,7 @@ const detailsImg = document.querySelector('.img-wrapper');
 
 function renderDetailsPage(id, isHome) {
   let currentFilm;
-  if (isHome) {
+  if (isHome) {//якщо переходимо з "бібліотекти" -+ дані беремо з локалСтор (ред.)
     //lockStor
   } else {
     renderFilms.forEach(film => {

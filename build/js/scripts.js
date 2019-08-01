@@ -14,13 +14,14 @@ function createCardFunc(_ref) {
   li.className = 'card__container';
   var divMark = document.createElement('div');
   divMark.className = 'card__mark';
-  divMark.innerHTML = vote_average;
+  divMark.innerHTML = vote_average !== 0 ? vote_average : '--';
   var divTitle = document.createElement('div');
   divTitle.className = 'card__title';
   divTitle.innerHTML = title;
   var img = document.createElement('img');
   img.className = 'card__img';
-  img.setAttribute('src', "https://image.tmdb.org/t/p/w500/".concat(backdrop_path));
+  var imgSrc = backdrop_path !== null ? "https://image.tmdb.org/t/p/w500/".concat(backdrop_path) : "https://image.tmdb.org/t/p/w500//gkuyOdCeuKLdOlwQIUF44SHsYCq.jpg";
+  img.setAttribute('src', imgSrc);
   img.setAttribute('alt', title);
   li.append(divMark, divTitle, img);
   list.appendChild(li);
@@ -109,11 +110,19 @@ function plaginationNavigation(event) {
   if (event.target.dataset.id === 'prev' && pageNumber !== 1) {
     pageNumber -= 1;
     barSpan.innerHTML = pageNumber;
+    if (pageNumber === 1) event.target.classList.remove('switching-bar_btn__active');
+    console.log(event.target);
   }
 
   if (event.target.dataset.id === 'next') {
     pageNumber += 1;
     barSpan.innerHTML = pageNumber;
+
+    if (pageNumber === 2) {
+      buttonBar.firstChild.classList.add('switching-bar_btn__active');
+    }
+
+    console.log(event.target);
   }
 
   if (inputValue.value === '') {
@@ -169,7 +178,8 @@ var detailsImg = document.querySelector('.img-wrapper');
 function renderDetailsPage(id, isHome) {
   var currentFilm;
 
-  if (isHome) {//lockStor
+  if (isHome) {//якщо переходимо з "бібліотекти" -+ дані беремо з локалСтор (ред.)
+    //lockStor
   } else {
     renderFilms.forEach(function (film) {
       if (film.id === id) {
