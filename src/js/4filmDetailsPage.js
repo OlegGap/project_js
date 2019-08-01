@@ -29,11 +29,10 @@ function renderDetailsPage(id, isHome) {
     detailsAbout.innerHTML = currentFilm.overview;
     detailsImg.firstChild.setAttribute(
       'src',
-      `https://image.tmdb.org/t/p/w500/${currentFilm.poster_path}`,
+      `https://image.tmdb.org/t/p/w500/${currentFilm.poster_path}`
     );
   }
-  let watched = localStorage.getItem('watched')===null?[]:JSON.parse(localStorage.getItem('watched'));//запишемо дані з лок.стор в змінну
-
+  let watched = localStorage.getItem('watched')=="null"?[]:JSON.parse(localStorage.getItem('watched'));//запишемо дані з лок.стор в змінну
   if (watched.lenght === 0) {
     btnAddWatched.firstChild.setAttribute('src', 'images/icon/video.png');
     btnAddWatched.lastChild.innerHTML = 'Add to watched';
@@ -60,7 +59,6 @@ function renderDetailsPage(id, isHome) {
   }
   
   let queue = localStorage.getItem('queue')===null?[]:JSON.parse(localStorage.getItem('queue'));//запишемо дані з лок.стор в змінну
-
   if (queue.lenght === 0) {//перевірка при завантажені чи є фільм в "черзі"
     btnAddQueue.firstChild.setAttribute('src', 'images/icon/calendar-plus.png');
     btnAddQueue.lastChild.innerHTML = 'Add to queue';

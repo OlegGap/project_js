@@ -734,6 +734,9 @@ tr {
 
 .btn-list {
   display: flex;
+  height: 70px;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .btn-list-item {
@@ -854,6 +857,7 @@ tr {
 
   .btn-list {
     width: 350px;
+    flex-direction: row;
   }
 }
 

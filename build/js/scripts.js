@@ -195,7 +195,7 @@ function renderDetailsPage(id, isHome) {
     detailsImg.firstChild.setAttribute('src', "https://image.tmdb.org/t/p/w500/".concat(currentFilm.poster_path));
   }
 
-  var watched = localStorage.getItem('watched') === null ? [] : JSON.parse(localStorage.getItem('watched')); //запишемо дані з лок.стор в змінну
+  var watched = localStorage.getItem('watched') == "null" ? [] : JSON.parse(localStorage.getItem('watched')); //запишемо дані з лок.стор в змінну
 
   if (watched.lenght === 0) {
     btnAddWatched.firstChild.setAttribute('src', 'images/icon/video.png');
