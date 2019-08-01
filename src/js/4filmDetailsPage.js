@@ -25,16 +25,16 @@ function renderDetailsPage(id, isHome) {
     detailsPopularity.innerHTML = currentFilm.popularity;
     detailsOriginalTitle.innerHTML = currentFilm.original_title;
     // detailsGenre.innerHTML = 'some genre';
+    
     detailsAbout.innerHTML = currentFilm.overview;
     detailsImg.firstChild.setAttribute(
       'src',
       `https://image.tmdb.org/t/p/w500/${currentFilm.poster_path}`,
     );
   }
+  let watched = localStorage.getItem('watched')===null?[]:JSON.parse(localStorage.getItem('watched'));//запишемо дані з лок.стор в змінну
 
-  let watched = localStorage.getItem('watched');
-
-  if (watched === null) {
+  if (watched.lenght === 0) {
     btnAddWatched.firstChild.setAttribute('src', 'images/icon/video.png');
     btnAddWatched.lastChild.innerHTML = 'Add to watched';
   } else if (watched.find(film => film.id === id)) {
@@ -45,9 +45,23 @@ function renderDetailsPage(id, isHome) {
     btnAddWatched.lastChild.innerHTML = 'Add to watched';
   }
 
-  let queue = localStorage.getItem('queue');
+  btnAddWatched.addEventListener('click', hundleClickChangeWatched);
+  function hundleClickChangeWatched(evt) {
+    if (evt.target.innerHTML === 'Add to watched') {
+      watched.push(currentFilm);
+      btnAddWatched.lastChild.innerHTML = 'Remove from watched';
+      btnAddWatched.firstChild.setAttribute('src', 'images/icon/trash.png');
+    } else {
+      watched.pop(currentFilm);
+      btnAddWatched.lastChild.innerHTML = 'Add to watched';
+      btnAddWatched.firstChild.setAttribute('src', 'images/icon/video.png');
+    }
+    localStorage.setItem('watched', JSON.stringify(watched));
+  }
+  
+  let queue = localStorage.getItem('queue')===null?[]:JSON.parse(localStorage.getItem('queue'));//запишемо дані з лок.стор в змінну
 
-  if (queue === null) {
+  if (queue.lenght === 0) {//перевірка при завантажені чи є фільм в "черзі"
     btnAddQueue.firstChild.setAttribute('src', 'images/icon/calendar-plus.png');
     btnAddQueue.lastChild.innerHTML = 'Add to queue';
   } else if (queue.find(film => film.id === id)) {
@@ -63,20 +77,16 @@ function renderDetailsPage(id, isHome) {
 
   btnAddQueue.addEventListener('click', hundleClickChangeQueue);
   function hundleClickChangeQueue(evt) {
-    if (evt.firstChild.innerHTML === 'Add to queue') {
+    if (evt.target.innerHTML === 'Add to queue') {
       queue.push(currentFilm);
+      evt.target.innerHTML = 'Remove from queue';
+      btnAddQueue.firstChild.setAttribute('src', 'images/icon/calendar-minus.png');
     } else {
       queue.pop(currentFilm);
+      evt.target.innerHTML = 'Add to queue';
+      btnAddQueue.firstChild.setAttribute('src', 'images/icon/calendar-plus.png');
     }
+    console.log(`add to LS: ${queue}`);
     localStorage.setItem('queue', JSON.stringify(queue));
-  }
-  btnAddWatched.addEventListener('click', hundleClickChangeWatched);
-  function hundleClickChangeWatched(evt) {
-    if (evt.firstChild.innerHTML === 'Add to watched') {
-      watched.push(currentFilm);
-    } else {
-      watched.pop(currentFilm);
-    }
-    localStorage.setItem('watched', JSON.stringify(watched));
   }
 }

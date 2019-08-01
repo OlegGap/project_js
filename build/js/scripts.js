@@ -195,9 +195,9 @@ function renderDetailsPage(id, isHome) {
     detailsImg.firstChild.setAttribute('src', "https://image.tmdb.org/t/p/w500/".concat(currentFilm.poster_path));
   }
 
-  var watched = localStorage.getItem('watched');
+  var watched = localStorage.getItem('watched') === null ? [] : JSON.parse(localStorage.getItem('watched')); //запишемо дані з лок.стор в змінну
 
-  if (watched === null) {
+  if (watched.lenght === 0) {
     btnAddWatched.firstChild.setAttribute('src', 'images/icon/video.png');
     btnAddWatched.lastChild.innerHTML = 'Add to watched';
   } else if (watched.find(function (film) {
@@ -210,9 +210,26 @@ function renderDetailsPage(id, isHome) {
     btnAddWatched.lastChild.innerHTML = 'Add to watched';
   }
 
-  var queue = localStorage.getItem('queue');
+  btnAddWatched.addEventListener('click', hundleClickChangeWatched);
 
-  if (queue === null) {
+  function hundleClickChangeWatched(evt) {
+    if (evt.target.innerHTML === 'Add to watched') {
+      watched.push(currentFilm);
+      btnAddWatched.lastChild.innerHTML = 'Remove from watched';
+      btnAddWatched.firstChild.setAttribute('src', 'images/icon/trash.png');
+    } else {
+      watched.pop(currentFilm);
+      btnAddWatched.lastChild.innerHTML = 'Add to watched';
+      btnAddWatched.firstChild.setAttribute('src', 'images/icon/video.png');
+    }
+
+    localStorage.setItem('watched', JSON.stringify(watched));
+  }
+
+  var queue = localStorage.getItem('queue') === null ? [] : JSON.parse(localStorage.getItem('queue')); //запишемо дані з лок.стор в змінну
+
+  if (queue.lenght === 0) {
+    //перевірка при завантажені чи є фільм в "черзі"
     btnAddQueue.firstChild.setAttribute('src', 'images/icon/calendar-plus.png');
     btnAddQueue.lastChild.innerHTML = 'Add to queue';
   } else if (queue.find(function (film) {
@@ -228,25 +245,18 @@ function renderDetailsPage(id, isHome) {
   btnAddQueue.addEventListener('click', hundleClickChangeQueue);
 
   function hundleClickChangeQueue(evt) {
-    if (evt.firstChild.innerHTML === 'Add to queue') {
+    if (evt.target.innerHTML === 'Add to queue') {
       queue.push(currentFilm);
+      evt.target.innerHTML = 'Remove from queue';
+      btnAddQueue.firstChild.setAttribute('src', 'images/icon/calendar-minus.png');
     } else {
       queue.pop(currentFilm);
+      evt.target.innerHTML = 'Add to queue';
+      btnAddQueue.firstChild.setAttribute('src', 'images/icon/calendar-plus.png');
     }
 
+    console.log("add to LS: ".concat(queue));
     localStorage.setItem('queue', JSON.stringify(queue));
-  }
-
-  btnAddWatched.addEventListener('click', hundleClickChangeWatched);
-
-  function hundleClickChangeWatched(evt) {
-    if (evt.firstChild.innerHTML === 'Add to watched') {
-      watched.push(currentFilm);
-    } else {
-      watched.pop(currentFilm);
-    }
-
-    localStorage.setItem('watched', JSON.stringify(watched));
   }
 }
 "use strict";
