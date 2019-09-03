@@ -96,7 +96,7 @@ function fetchFilms(inputValue, pageNumber) {
     return res.json();
   }).then(function (result) {
     if (result.results.length === 0) {
-      error.innerHTML = 'Нічого не знайдено :(';
+      error.innerHTML = 'Nothing has been found :(';
     } else {
       error.innerHTML = '';
       return result.results;
@@ -230,7 +230,6 @@ function renderDetailsPage(id, isHome) {
       btnAddWatched.firstChild.setAttribute('src', 'images/icon/video.png');
     }
 
-    console.log(watched);
     localStorage.setItem('watched', JSON.stringify(watched));
   };
 
@@ -261,10 +260,77 @@ function renderDetailsPage(id, isHome) {
       btnAddQueue.firstChild.setAttribute('src', 'images/icon/calendar-plus.png');
     }
 
-    console.log(queue);
     localStorage.setItem('queue', JSON.stringify(queue));
   };
 }
 "use strict";
 
 var libraryCards = document.querySelector('.cards__wrapper');
+
+var createCardLibrary = function createCardLibrary(_ref) {
+  var backdrop_path = _ref.backdrop_path,
+      title = _ref.title,
+      id = _ref.id,
+      vote_average = _ref.vote_average;
+  var li = document.createElement('li');
+  li.className = 'card__container';
+  var divMark = document.createElement('div');
+  divMark.className = 'card__mark';
+  divMark.innerHTML = vote_average !== 0 ? vote_average : '--';
+  var divTitle = document.createElement('div');
+  divTitle.className = 'card__title';
+  divTitle.innerHTML = title;
+  var img = document.createElement('img');
+  img.className = 'card__img';
+  var imgSrc = backdrop_path !== null ? "https://image.tmdb.org/t/p/w500/".concat(backdrop_path) : "https://image.tmdb.org/t/p/w500//gkuyOdCeuKLdOlwQIUF44SHsYCq.jpg";
+  img.setAttribute('src', imgSrc);
+  img.setAttribute('alt', title);
+  li.append(divMark, divTitle, img);
+  libraryCards.appendChild(li);
+  li.addEventListener('click', function () {
+    return activeDetailsPage(id, false);
+  });
+};
+
+var librarySpinWatchd = document.querySelector('.library__spin__list-item-watched');
+var librarySpinQueue = document.querySelector('.library__spin__list-item-queue');
+var libraryCardsWatched = localStorage.getItem('watched') ? JSON.parse(localStorage.getItem('watched')) : []; //запишемо дані з лок.стор в змінну
+
+if (libraryCardsWatched.length == 0) {
+  libraryCards.innerHTML = 'Your movies for watching will be here ';
+} else {
+  libraryCardsWatched.forEach(function (film) {
+    createCardLibrary(film);
+  });
+}
+
+librarySpinWatchd.addEventListener('click', function () {
+  libraryCardsWatched = localStorage.getItem('watched') ? JSON.parse(localStorage.getItem('watched')) : [];
+
+  if (libraryCardsWatched.length === 0) {
+    libraryCards.innerHTML = 'Your movies for watching will be here ';
+  } else {
+    libraryCards.innerHTML = '';
+    libraryCardsWatched.forEach(function (film) {
+      createCardLibrary(film);
+    });
+  }
+
+  librarySpinWatchd.classList.add('library__spin__list-item-active');
+  librarySpinQueue.classList.remove('library__spin__list-item-active');
+});
+librarySpinQueue.addEventListener('click', function () {
+  var libraryCardsQueue = localStorage.getItem('queue') ? JSON.parse(localStorage.getItem('queue')) : [];
+
+  if (libraryCardsQueue.length === 0) {
+    libraryCards.innerHTML = 'Your movies in queue will be here';
+  } else {
+    libraryCards.innerHTML = '';
+    libraryCardsQueue.forEach(function (film) {
+      createCardLibrary(film);
+    });
+  }
+
+  librarySpinQueue.classList.add('library__spin__list-item-active');
+  librarySpinWatchd.classList.remove('library__spin__list-item-active');
+});

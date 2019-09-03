@@ -6,11 +6,13 @@
   box-sizing: border-box;
 }
 
-body {
-  min-height: 100vh;
+.container-all {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; 
+  min-height: -webkit-fill-available;
+
+  // min-height: -webkit-fill-available;
 }
 
 @import './normalize';

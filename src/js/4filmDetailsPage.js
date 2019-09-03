@@ -61,8 +61,6 @@ function renderDetailsPage(id, isHome) {
       btnAddWatched.lastChild.innerHTML = 'Add to watched';
       btnAddWatched.firstChild.setAttribute('src', 'images/icon/video.png');
     }
-    console.log(watched);
-
     localStorage.setItem('watched', JSON.stringify(watched));
   }
 
@@ -91,7 +89,6 @@ function renderDetailsPage(id, isHome) {
       evt.target.innerHTML = 'Add to queue';
       btnAddQueue.firstChild.setAttribute('src', 'images/icon/calendar-plus.png');
     }
-    console.log(queue);
     localStorage.setItem('queue', JSON.stringify(queue));
   }
 }
