@@ -111,7 +111,6 @@ function plaginationNavigation(event) {
     pageNumber -= 1;
     barSpan.innerHTML = pageNumber;
     if (pageNumber === 1) event.target.classList.remove('switching-bar_btn__active');
-    console.log(event.target);
   }
 
   if (event.target.dataset.id === 'next') {
@@ -121,8 +120,6 @@ function plaginationNavigation(event) {
     if (pageNumber === 2) {
       buttonBar.firstChild.classList.add('switching-bar_btn__active');
     }
-
-    console.log(event.target);
   }
 
   if (inputValue.value === '') {
