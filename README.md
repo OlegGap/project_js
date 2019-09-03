@@ -1,6 +1,6 @@
 # Web Application "Filmoteka"
 
-Project on JavaScript, HTML5, SCSS
+Team project on JavaScript, HTML5, SCSS
 
 ## Requirements
 - NPM
