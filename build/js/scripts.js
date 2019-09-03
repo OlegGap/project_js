@@ -174,6 +174,15 @@ var detailsAbout = document.querySelector('.details_about');
 var btnAddWatched = document.querySelector('.btn-list-item-1');
 var btnAddQueue = document.querySelector('.btn-list-item-2');
 var detailsImg = document.querySelector('.img-wrapper');
+var hundleClickChangeWatched;
+btnAddWatched.addEventListener('click', function (evt) {
+  return hundleClickChangeWatched(evt);
+}); //add listener only once
+
+var hundleClickChangeQueue;
+btnAddQueue.addEventListener('click', function (evt) {
+  return hundleClickChangeQueue(evt);
+});
 
 function renderDetailsPage(id, isHome) {
   var currentFilm;
@@ -195,7 +204,7 @@ function renderDetailsPage(id, isHome) {
     detailsImg.firstChild.setAttribute('src', "https://image.tmdb.org/t/p/w500/".concat(currentFilm.poster_path));
   }
 
-  var watched = localStorage.getItem('watched') == "null" ? [] : JSON.parse(localStorage.getItem('watched')); //запишемо дані з лок.стор в змінну
+  var watched = localStorage.getItem('watched') ? JSON.parse(localStorage.getItem('watched')) : []; //запишемо дані з лок.стор в змінну
 
   if (watched.lenght === 0) {
     btnAddWatched.firstChild.setAttribute('src', 'images/icon/video.png');
@@ -210,9 +219,7 @@ function renderDetailsPage(id, isHome) {
     btnAddWatched.lastChild.innerHTML = 'Add to watched';
   }
 
-  btnAddWatched.addEventListener('click', hundleClickChangeWatched);
-
-  function hundleClickChangeWatched(evt) {
+  hundleClickChangeWatched = function hundleClickChangeWatched(evt) {
     if (evt.target.innerHTML === 'Add to watched') {
       watched.push(currentFilm);
       btnAddWatched.lastChild.innerHTML = 'Remove from watched';
@@ -223,10 +230,11 @@ function renderDetailsPage(id, isHome) {
       btnAddWatched.firstChild.setAttribute('src', 'images/icon/video.png');
     }
 
+    console.log(watched);
     localStorage.setItem('watched', JSON.stringify(watched));
-  }
+  };
 
-  var queue = localStorage.getItem('queue') === null ? [] : JSON.parse(localStorage.getItem('queue')); //запишемо дані з лок.стор в змінну
+  var queue = localStorage.getItem('queue') ? JSON.parse(localStorage.getItem('queue')) : []; //запишемо дані з лок.стор в змінну
 
   if (queue.lenght === 0) {
     //перевірка при завантажені чи є фільм в "черзі"
@@ -242,9 +250,7 @@ function renderDetailsPage(id, isHome) {
     btnAddQueue.lastChild.innerHTML = 'Add to queue';
   }
 
-  btnAddQueue.addEventListener('click', hundleClickChangeQueue);
-
-  function hundleClickChangeQueue(evt) {
+  hundleClickChangeQueue = function hundleClickChangeQueue(evt) {
     if (evt.target.innerHTML === 'Add to queue') {
       queue.push(currentFilm);
       evt.target.innerHTML = 'Remove from queue';
@@ -255,8 +261,10 @@ function renderDetailsPage(id, isHome) {
       btnAddQueue.firstChild.setAttribute('src', 'images/icon/calendar-plus.png');
     }
 
-    console.log("add to LS: ".concat(queue));
+    console.log(queue);
     localStorage.setItem('queue', JSON.stringify(queue));
-  }
+  };
 }
 "use strict";
+
+var libraryCards = document.querySelector('.cards__wrapper');

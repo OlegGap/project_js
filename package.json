@@ -12,9 +12,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axZerk/gulp-starter-kit.git"
+    "url": "git+https://github.com/OlegGap/project_js.git"
   },
-  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
+  "author": "Oleg Hnapovskyi <hnapovskiy20@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/axZerk/gulp-starter-kit/issues"

@@ -1,1 +1,29 @@
-
+.library__spin-container {
+  display: flex;
+  justify-content: center;
+  .library__spin__list {
+    width: 280px;
+    height: 40px;
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    .library__spin__list-item {
+      list-style: none;
+      width: 50%;
+      border-bottom: 3px solid #9895a2;
+      position: relative;
+      padding: 10px;
+      &:hover {
+        border-bottom-color: #77c1bb;
+        background: #77c1bb;
+        color: #fff;
+      }
+      .library__spin__list-link {
+        text-decoration: none;
+        color: #101010;
+      }
+    }
+  }
+}
