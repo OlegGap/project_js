@@ -53,7 +53,7 @@ function renderDetailsPage(id, isHome) {
   }
   hundleClickChangeWatched = function (evt) {
     if (evt.target.innerHTML === 'Add to watched') {
-      watched.push(currentFilm);
+      watched.unshift(currentFilm);
       btnAddWatched.lastChild.innerHTML = 'Remove from watched';
       btnAddWatched.firstChild.setAttribute('src', 'images/icon/trash.png');
     } else {
@@ -81,7 +81,7 @@ function renderDetailsPage(id, isHome) {
 
   hundleClickChangeQueue = function(evt) {
     if (evt.target.innerHTML === 'Add to queue') {
-      queue.push(currentFilm);
+      queue.unshift(currentFilm);
       evt.target.innerHTML = 'Remove from queue';
       btnAddQueue.firstChild.setAttribute('src', 'images/icon/calendar-minus.png');
     } else {
