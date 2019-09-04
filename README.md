@@ -3,6 +3,8 @@
 Team project on JavaScript, HTML5, SCSS
 
 ## Requirements
+- JavaScript
+- HTML5/SCSS
 - NPM
 ## Installation
 ```bash
