@@ -32,6 +32,7 @@ npm run build #Build to production
 
 - Finding your favorite movies
 - Review the most popular movies
-- View movie details, rating, etc
+- View movie details, popularity, etc
 - Add movies to your queue or watch movies (This will remain in your browser)
 - Or delete movies from your queue or watch movies library
+- And other tools in the future :)
