@@ -5,7 +5,7 @@ Team project on JavaScript, HTML5, SCSS
 ## Requirements
 - JavaScript
 - HTML5/SCSS
-- Webpack
+- Gulp
 - NPM
 ## Installation
 ```bash
